@@ -9,3 +9,36 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String       @unique @default(uuid())
+  name         String
+  email        String       @unique
+  passwordHash String
+  createdAt    DateTime     @default(now())
+  Portifolio   Portifolio[]
+}
+
+model Portifolio {
+  id             String   @unique @default(uuid())
+  createdAt      DateTime @default(now())
+  updateAt       DateTime @default(now())
+  quantity       Int
+  purchase_price Decimal
+  userId         String
+  stockId        String
+  user           User     @relation(fields: [userId], references: [id])
+  stock          Stock    @relation(fields: [stockId], references: [id])
+}
+
+model Stock {
+  id         String       @unique @default(uuid())
+  symbol     String       @unique
+  name       String
+  price      Decimal
+  sector     String
+  industry   String
+  createdAt  DateTime     @default(now())
+  updateAt   DateTime     @default(now())
+  portifolio Portifolio[]
+}
