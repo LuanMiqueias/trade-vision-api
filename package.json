@@ -1,0 +1,9 @@
+{
+	"name": "template-container-nodejs-v20",
+	"version": "1.0.0",
+	"main": "index.js",
+	"repository": "https://github.com/LuanMiqueias/find-your-pet-api.git",
+	"author": "Luan Miqueias <luanmiqueias92@gmail.com>",
+	"license": "MIT",
+	"dependencies": {}
+}
