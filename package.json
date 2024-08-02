@@ -5,5 +5,42 @@
 	"repository": "https://github.com/LuanMiqueias/find-your-pet-api.git",
 	"author": "Luan Miqueias <luanmiqueias92@gmail.com>",
 	"license": "MIT",
-	"dependencies": {}
+	"scripts": {
+		"dev": "tsx watch ./src/server.ts",
+		"start": "node build/server.js",
+		"build": "tsup src --out-dir build",
+		"test": "vitest run --dir src/use-cases",
+		"test:watch": "vitest test --dir src/use-cases"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.8.3",
+		"@types/node": "20.11.16",
+		"@types/supertest": "6.0.2",
+		"@typescript-eslint/eslint-plugin": "6.20.0",
+		"@typescript-eslint/parser": "6.20.0",
+		"@vitest/coverage-v8": "2.0.1",
+		"eslint": "8.56.0",
+		"npm-run-all": "4.1.5",
+		"prisma": "5.9.1",
+		"supertest": "7.0.0",
+		"tsup": "8.0.1",
+		"tsx": "4.7.0",
+		"typescript": "5.3.3",
+		"vite-tsconfig-paths": "4.3.2",
+		"vitest": "2.0.1"
+	},
+	"dependencies": {
+		"@fastify/cookie": "9.3.1",
+		"@fastify/cors": "^9.0.1",
+		"@fastify/jwt": "^8.0.1",
+		"@prisma/client": "5.9.1",
+		"@types/bcryptjs": "2.4.6",
+		"bcryptjs": "2.4.3",
+		"dayjs": "1.11.11",
+		"dotenv": "16.4.1",
+		"fastify": "4.26.0",
+		"nodemon": "^3.1.4",
+		"ts-node": "^10.9.2",
+		"zod": "3.22.4"
+	}
 }

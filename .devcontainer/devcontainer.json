@@ -1,19 +1,22 @@
 {
-  "name": "Template nodeJS v20",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspace",
+  "name": "TradeVision - API",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/workspace",
   "customizations": {
     "vscode": {
       "extensions": [
-		"streetsidesoftware.code-spell-checker",
-		"esbenp.prettier-vscode",
-		"ms-azuretools.vscode-docker"
-	]
+        "streetsidesoftware.code-spell-checker",
+        "esbenp.prettier-vscode",
+        "ms-azuretools.vscode-docker",
+        "Prisma.prisma",
+        "biomejs.biome"
+      ]
     }
   },
   "forwardPorts": [
-    3000
+    3000,
+    5432
   ],
   "postCreateCommand": "yarn install",
   "postStartCommand": "git config --global --add safe.directory /workspace"

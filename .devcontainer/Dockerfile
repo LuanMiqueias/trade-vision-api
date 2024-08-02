@@ -13,5 +13,6 @@ RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.
 RUN apt update
 
 EXPOSE 3000
+EXPOSE 5432
 
 
