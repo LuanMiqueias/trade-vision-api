@@ -10,4 +10,5 @@ export const stockRoutes = async (app: FastifyInstance) => {
 	app.addHook("onRequest", verifyJWT);
 
 	app.post("/stocks/create", createStock);
+	app.get("/stocks", createStock);
 };

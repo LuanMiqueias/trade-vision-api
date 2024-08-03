@@ -2,6 +2,8 @@ import { User } from "@prisma/client";
 import { hash } from "bcryptjs";
 import { UserRepository } from "../../repositories/user.repository";
 import { UserAlreadyExistsError } from "../errors/user.already-exists-error";
+import { WalletRepository } from "../../repositories/wallet.repository";
+import { Decimal } from "@prisma/client/runtime/library";
 
 interface CreateUserUseCaseRequest {
 	name: string;
@@ -14,7 +16,10 @@ interface CreateUserUseCaseResponse {
 }
 
 export class CreateUserUseCase {
-	constructor(private userRepository: UserRepository) {}
+	constructor(
+		private userRepository: UserRepository,
+		private walletRepository: WalletRepository
+	) {}
 
 	async execute({
 		name,
@@ -33,6 +38,19 @@ export class CreateUserUseCase {
 			email,
 			passwordHash,
 		});
-		return { user };
+		try {
+			await this.walletRepository.create({
+				initialBalance: new Decimal(100), // TODO: Fix later
+				userId: user?.id,
+			});
+		} catch (err) {
+			console.log(err);
+			throw new Error(err);
+		}
+		return {
+			user: {
+				...user,
+			},
+		};
 	}
 }

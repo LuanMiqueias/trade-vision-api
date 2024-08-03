@@ -3,6 +3,7 @@ import { z } from "zod";
 import { UserAlreadyExistsError } from "../../../use-cases/errors/user.already-exists-error";
 import { PrismaUserRepository } from "../../../repositories/prisma/prisma-user-repository";
 import { CreateUserUseCase } from "../../../use-cases/user/register";
+import { PrismaWalletRepository } from "../../../repositories/prisma/wallet-user-repository";
 
 export const createUser = async (req: FastifyRequest, res: FastifyReply) => {
 	const createUserBodySchema = z.object({
@@ -12,7 +13,8 @@ export const createUser = async (req: FastifyRequest, res: FastifyReply) => {
 	});
 
 	const repository = new PrismaUserRepository();
-	const createUserUseCase = new CreateUserUseCase(repository);
+	const walletRepository = new PrismaWalletRepository();
+	const createUserUseCase = new CreateUserUseCase(repository, walletRepository);
 
 	const { name, email, password } = createUserBodySchema.parse(req.body);
 
