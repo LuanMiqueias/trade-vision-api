@@ -39,6 +39,7 @@ model Stock {
   id        String      @unique @default(uuid())
   symbol    String      @unique
   name      String
+  shortName String
   price     Decimal
   sector    String
   industry  String

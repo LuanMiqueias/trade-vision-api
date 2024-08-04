@@ -35,6 +35,7 @@
 		"@fastify/jwt": "^8.0.1",
 		"@prisma/client": "5.9.1",
 		"@types/bcryptjs": "2.4.6",
+		"axios": "^1.7.3",
 		"bcryptjs": "2.4.3",
 		"dayjs": "1.11.11",
 		"dotenv": "16.4.1",

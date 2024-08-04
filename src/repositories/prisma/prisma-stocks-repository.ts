@@ -19,8 +19,11 @@ export class PrismaStocksRepository implements StocksRepository {
 				throw new StockAlreadyExistsError();
 		}
 	}
-	async getStocks() {
-		const data = await prisma.stock.findMany();
+	async getStocks(page: number, skip: number, take: number) {
+		const data = await prisma.stock.findMany({
+			skip: page * skip,
+			take,
+		});
 
 		return data;
 	}

@@ -13,25 +13,29 @@ export class PrismaPortfolioRepository implements PortfolioRepository {
 		return portfolio;
 	}
 	async findManyByUserId(userId: string) {
-		const portfolio = await prisma.portfolio.groupBy({
-			by: ["symbol"],
+		const portfolio = await prisma.portfolio.findMany({
 			where: {
 				userId,
 			},
+			select: {
+				id: true,
+				createdAt: true,
+				updatedAt: true,
+				quantity: true,
+				purchase_price: true,
+				symbol: true,
+			},
 		});
-		// .findMany({
-		// 	where: {
-		// 		userId,
-		// 	},
-		// 	select: {
-		// 		id: true,
-		// 		createdAt: true,
-		// 		updatedAt: true,
-		// 		quantity: true,
-		// 		purchase_price: true,
-		// 		symbol: true,
-		// 	},
-		// });
+
+		return portfolio;
+	}
+	async findBySymbol(userId: string, symbol: string) {
+		const portfolio = await prisma.portfolio.findFirst({
+			where: {
+				userId,
+				symbol,
+			},
+		});
 
 		return portfolio;
 	}

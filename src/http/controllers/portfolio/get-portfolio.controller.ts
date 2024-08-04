@@ -1,9 +1,5 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { z } from "zod";
-import { UserAlreadyExistsError } from "../../../use-cases/errors/user.already-exists-error";
-import { CreatePortfolioUseCase } from "@/use-cases/portfolio/create-portfolio";
-import { PrismaPortfolioRepository } from "@/repositories/prisma/portfolio-portfolio-repository";
-import { Decimal } from "@prisma/client/runtime/library";
+import { PrismaPortfolioRepository } from "@/repositories/prisma/prisma-portfolio-repository";
 import { GetAllPortfolioUseCase } from "@/use-cases/portfolio/get-all-portfolio";
 
 export const getPortfolio = async (req: FastifyRequest, res: FastifyReply) => {

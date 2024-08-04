@@ -4,6 +4,6 @@ export interface StocksRepository {
 	createMany(
 		data: Prisma.StockCreateManyInput[]
 	): Promise<Prisma.BatchPayload | undefined>;
-	getStocks(): Promise<Stock[]>;
+	getStocks(page: number, skip: number, take: number): Promise<Stock[]>;
 	findBySymbol(symbol: string): Promise<Stock | null>;
 }

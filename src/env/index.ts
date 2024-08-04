@@ -5,6 +5,10 @@ const envSchema = z.object({
 	NODE_ENV: z.enum(["dev", "test", "production"]).default("dev"),
 	PORT: z.coerce.number().default(3000),
 	JWT_SECRET: z.string(),
+	FINANCIAL_MODELING_PREP_API_KEY: z.string(),
+	FINANCIAL_MODELING_PREP_URL: z.string(),
+	ALPHA_VANTAGE_API_KEY: z.string(),
+	ALPHA_VANTAG_URL: z.string(),
 });
 
 const _env = envSchema.safeParse(process.env);
