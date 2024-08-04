@@ -8,11 +8,10 @@ import { MaxTwoDecimalError } from "../../../use-cases/errors/max-two-decimal-er
 
 export const depositWallet = async (req: FastifyRequest, res: FastifyReply) => {
 	const createBodySchema = z.object({
-		amount: z.number(),
-		// .refine((v) => {
-		// 	const decimal = new Decimal(v);
-		// 	return decimal.decimalPlaces() <= 2;
-		// }),
+		amount: z.number().refine((v) => {
+			const decimal = new Decimal(v);
+			return decimal.decimalPlaces() <= 2;
+		}),
 	});
 
 	const repository = new PrismaWalletRepository();

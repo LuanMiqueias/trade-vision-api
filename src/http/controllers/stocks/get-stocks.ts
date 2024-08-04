@@ -21,7 +21,7 @@ export const createStock = async (req: FastifyRequest, res: FastifyReply) => {
 	const dataArray = createBodySchema.parse(req.body);
 	try {
 		await createStocksUseCase.execute(dataArray);
-		return res.status(201).send();
+		return res.status(200).send();
 	} catch (err) {
 		if (err instanceof StockAlreadyExistsError) {
 			return res.status(409).send(err.message);

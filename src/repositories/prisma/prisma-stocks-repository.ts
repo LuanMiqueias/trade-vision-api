@@ -11,6 +11,7 @@ export class PrismaStocksRepository implements StocksRepository {
 			return await prisma.stock.createMany({ data });
 		} catch (err) {
 			if (
+				err instanceof Error &&
 				err?.message?.includes(
 					"Unique constraint failed on the fields: (`symbol`)"
 				)
@@ -20,6 +21,15 @@ export class PrismaStocksRepository implements StocksRepository {
 	}
 	async getStocks() {
 		const data = await prisma.stock.findMany();
+
+		return data;
+	}
+	async findBySymbol(symbol: string) {
+		const data = await prisma.stock.findUnique({
+			where: {
+				symbol,
+			},
+		});
 
 		return data;
 	}

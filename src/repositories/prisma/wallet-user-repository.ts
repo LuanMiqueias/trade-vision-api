@@ -19,6 +19,12 @@ export class PrismaWalletRepository implements WalletRepository {
 			where: {
 				userId,
 			},
+			select: {
+				id: true,
+				balance: true,
+				createdAt: true,
+				updatedAt: true,
+			},
 		});
 
 		return wallet;
