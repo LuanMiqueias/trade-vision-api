@@ -9,3 +9,56 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String      @unique @default(uuid())
+  name         String
+  email        String      @unique
+  passwordHash String
+  role         UserRole    @default(USER)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  portfolio    Portfolio[]
+  Wallet       Wallet?
+}
+
+model Portfolio {
+  id             String   @unique @default(uuid())
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  quantity       Int
+  purchase_price Decimal
+  userId         String
+  symbol         String
+
+  user  User  @relation(fields: [userId], references: [id])
+  stock Stock @relation(fields: [symbol], references: [symbol])
+}
+
+model Stock {
+  id        String      @unique @default(uuid())
+  symbol    String      @unique
+  name      String
+  shortName String
+  price     Decimal
+  sector    String
+  industry  String
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+  portfolio Portfolio[]
+}
+
+model Wallet {
+  id        String   @unique @default(uuid())
+  userId    String   @unique
+  balance   Decimal  @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+}
+
+enum UserRole {
+  ADMIN
+  USER
+}

@@ -7,9 +7,13 @@ import { ZodError } from "zod";
 
 // Env
 import { env } from "./env";
-import { userRoutes } from "./http/controllers/user/routes";
 
 // Routes
+import { userRoutes } from "./http/controllers/user/routes";
+import { stockRoutes } from "./http/controllers/stocks/routes";
+import { walletRoutes } from "./http/controllers/wallet/routes";
+import { portfolioRoutes } from "./http/controllers/portfolio/routes";
+import { tradeRoutes } from "./http/controllers/trade/routes";
 
 export const app = fastify();
 
@@ -20,11 +24,15 @@ app.register(cors, {
 app.register(fastifyJwt, {
 	secret: env.JWT_SECRET,
 	sign: {
-		expiresIn: "10m",
+		expiresIn: "7d",
 	},
 });
 
 app.register(userRoutes);
+app.register(stockRoutes);
+app.register(walletRoutes);
+app.register(portfolioRoutes);
+app.register(tradeRoutes);
 
 app.setErrorHandler((error, req, res) => {
 	if (error instanceof ZodError) {
