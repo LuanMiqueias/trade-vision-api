@@ -15,15 +15,9 @@ export class PrismaWalletRepository implements WalletRepository {
 		return wallet;
 	}
 	async findByUserId(userId: string) {
-		const wallet = await prisma.wallet.findUniqueOrThrow({
+		const wallet = await prisma.wallet.findUnique({
 			where: {
 				userId,
-			},
-			select: {
-				id: true,
-				balance: true,
-				createdAt: true,
-				updatedAt: true,
 			},
 		});
 

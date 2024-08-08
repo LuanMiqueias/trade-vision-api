@@ -13,6 +13,7 @@ import { userRoutes } from "./http/controllers/user/routes";
 import { stockRoutes } from "./http/controllers/stocks/routes";
 import { walletRoutes } from "./http/controllers/wallet/routes";
 import { portfolioRoutes } from "./http/controllers/portfolio/routes";
+import { tradeRoutes } from "./http/controllers/trade/routes";
 
 export const app = fastify();
 
@@ -31,6 +32,7 @@ app.register(userRoutes);
 app.register(stockRoutes);
 app.register(walletRoutes);
 app.register(portfolioRoutes);
+app.register(tradeRoutes);
 
 app.setErrorHandler((error, req, res) => {
 	if (error instanceof ZodError) {

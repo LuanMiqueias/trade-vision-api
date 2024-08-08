@@ -36,7 +36,7 @@ export class CreateStockUseCase {
 		if (status !== 200) throw new Error("provider error");
 
 		const transformDataToCreateStocks: CreateStockUseCaseRequest[] = data
-			.slice(0, 200)
+			.slice(0, 100)
 			.map((item) => {
 				return {
 					symbol: item?.symbol,
