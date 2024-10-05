@@ -29,6 +29,10 @@ export class BuyStockUseCase {
 		userId,
 	}: BuyStockUseCaseRequest): Promise<BuyStockUseCaseResponse> {
 		const userWallet = await this.walletRepository.findByUserId(userId);
+		const userPortfolio = await this.portfolioRepository.findBySymbol(
+			userId,
+			symbol
+		);
 		const stock = await this.stockRepository.findBySymbol(symbol);
 
 		// Chech Stock exists
@@ -45,13 +49,20 @@ export class BuyStockUseCase {
 		const newBalance = userBalance.minus(stockPrice);
 		await this.walletRepository.updateBalance(userId, newBalance);
 
-		// Update Portfolio
-		await this.portfolioRepository.create({
-			quantity,
-			userId,
-			purchase_price: stockPrice,
-			symbol: stock.symbol,
-		});
+		// Update or Create Portfolio
+		if (userPortfolio) {
+			await this.portfolioRepository.update(userId, userPortfolio.id, {
+				quantity: quantity + userPortfolio?.quantity,
+				purchase_price: stockPrice,
+			});
+		} else {
+			await this.portfolioRepository.create({
+				userId,
+				quantity,
+				purchase_price: stockPrice,
+				symbol: stock.symbol,
+			});
+		}
 
 		return { message: "sucess" };
 	}
