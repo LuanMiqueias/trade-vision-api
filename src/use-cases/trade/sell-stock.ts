@@ -40,16 +40,23 @@ export class SellStockUseCase {
 
 		const stockPrice = new Decimal(stock?.price || 0);
 
-		// Check Balance
+		// Check Quantity
 		const haveSufficientQuantity = portfolio.quantity > 0;
 		if (!haveSufficientQuantity) throw new InsufficienQuantityeError();
+
+		// Update Portfolio
+		if (quantity >= portfolio?.quantity) {
+			await this.portfolioRepository.remove(userId, portfolio.id);
+		} else {
+			await this.portfolioRepository.update(userId, portfolio.id, {
+				quantity: portfolio?.quantity - quantity,
+				purchase_price: stockPrice,
+			});
+		}
 
 		// Update Balance
 		const newBalance = userBalance.plus(stockPrice.mul(portfolio.quantity));
 		await this.walletRepository.updateBalance(userId, newBalance);
-
-		// Update Portfolio
-		await this.portfolioRepository.remove(userId, portfolio.id);
 
 		return { message: "sucess" };
 	}

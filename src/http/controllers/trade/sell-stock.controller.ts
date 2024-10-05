@@ -34,7 +34,7 @@ export const sellStock = async (req: FastifyRequest, res: FastifyReply) => {
 		if (err instanceof ResourceNotFoundError) {
 			return res.status(409).send({ message: err.message });
 		} else {
-			return res.status(500).send(); //TODO: fix later
+			return res.status(500).send(err); //TODO: fix later
 		}
 	}
 };

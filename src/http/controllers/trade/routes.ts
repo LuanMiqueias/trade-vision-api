@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
 import { buyStock } from "./buy-stock.controller";
-import { verifyJWT } from "../../middlewares/verify-jwt";
+import { verifyJWT } from "@/http/middlewares/verify-jwt";
 import { sellStock } from "./sell-stock.controller";
 
 // Controllers
