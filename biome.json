@@ -7,7 +7,6 @@
 			"recommended": false,
 			"complexity": {
 				"noBannedTypes": "error",
-				"noExtraBooleanCast": "error",
 				"noMultipleSpacesInRegularExpressionLiterals": "error",
 				"noUselessCatch": "error",
 				"noUselessConstructor": "off",
