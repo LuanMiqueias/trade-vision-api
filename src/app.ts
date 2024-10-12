@@ -10,10 +10,8 @@ import { env } from "./env";
 
 // Routes
 import { userRoutes } from "./http/controllers/user/routes";
-import { stockRoutes } from "./http/controllers/stocks/routes";
 import { walletRoutes } from "./http/controllers/wallet/routes";
-import { portfolioRoutes } from "./http/controllers/portfolio/routes";
-import { tradeRoutes } from "./http/controllers/trade/routes";
+import { cryptoRoutes } from "./http/controllers/crypto/routes";
 
 export const app = fastify();
 
@@ -29,10 +27,8 @@ app.register(fastifyJwt, {
 });
 
 app.register(userRoutes);
-app.register(stockRoutes);
 app.register(walletRoutes);
-app.register(portfolioRoutes);
-app.register(tradeRoutes);
+app.register(cryptoRoutes);
 
 app.setErrorHandler((error, req, res) => {
 	if (error instanceof ZodError) {

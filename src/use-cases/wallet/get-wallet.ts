@@ -1,4 +1,4 @@
-import { User, Wallet } from "@prisma/client";
+import { CryptoWallet, User, Wallet } from "@prisma/client";
 
 // Repository
 import { WalletRepository } from "../../repositories/wallet.repository";
@@ -11,7 +11,9 @@ interface GetWalletUseCaseRequest {
 }
 
 interface GetWalletUseCaseResponse {
-	wallet: Wallet;
+	wallet: Partial<
+		{ cryptos: Partial<Crypto> & Partial<CryptoWallet>[] } & Wallet
+	>;
 }
 
 export class GetWalletUseCase {
@@ -20,10 +22,9 @@ export class GetWalletUseCase {
 	async execute({
 		userId,
 	}: GetWalletUseCaseRequest): Promise<GetWalletUseCaseResponse> {
-		const wallet = await this.walletRepository.findByUserId(userId);
+		const wallet = await this.walletRepository.findDetailsByUserId(userId);
 
 		if (!wallet) throw new ResourceNotFoundError();
-
 		return { wallet };
 	}
 }
