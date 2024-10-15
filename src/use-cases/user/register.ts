@@ -44,8 +44,7 @@ export class CreateUserUseCase {
 				userId: user?.id,
 			});
 		} catch (err) {
-			console.log(err);
-			throw new Error(err);
+			throw new Error(err as string);
 		}
 		return {
 			user: {
