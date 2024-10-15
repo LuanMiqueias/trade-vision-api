@@ -3,8 +3,8 @@ import { z } from "zod";
 import { UserAlreadyExistsError } from "../../../use-cases/errors/user.already-exists-error";
 import { PrismaUserRepository } from "../../../repositories/prisma/prisma-user-repository";
 import { CreateUserUseCase } from "../../../use-cases/user/register";
-import { PrismaWalletRepository } from "../../../repositories/prisma/wallet-user-repository";
-import { PrismaCryptoRepository } from "@/repositories/prisma/crypto-repository";
+import { PrismaWalletRepository } from "../../../repositories/prisma/prisma-wallet-user-repository";
+import { PrismaCryptoRepository } from "@/repositories/prisma/prisma-crypto-repository";
 import { CreateCryptoUseCase } from "@/use-cases/crypto/create-crypto";
 
 export const createCrypto = async (req: FastifyRequest, res: FastifyReply) => {

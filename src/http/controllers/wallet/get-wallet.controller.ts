@@ -3,7 +3,7 @@ import { z } from "zod";
 import { UserAlreadyExistsError } from "../../../use-cases/errors/user.already-exists-error";
 import { PrismaUserRepository } from "../../../repositories/prisma/prisma-user-repository";
 import { CreateUserUseCase } from "../../../use-cases/user/register";
-import { PrismaWalletRepository } from "../../../repositories/prisma/wallet-user-repository";
+import { PrismaWalletRepository } from "../../../repositories/prisma/prisma-wallet-user-repository";
 import { GetWalletUseCase } from "../../../use-cases/wallet/get-wallet";
 import { ResourceNotFoundError } from "../../../use-cases/errors/resource-not-found-error";
 

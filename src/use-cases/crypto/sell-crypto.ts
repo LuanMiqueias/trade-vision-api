@@ -6,19 +6,19 @@ import Decimal from "decimal.js";
 import { CryptoRepository } from "@/repositories/crypto.repository";
 import { TransactionRepository } from "@/repositories/transaction.repository";
 
-interface BuyCryptoUseCaseRequest {
+interface SellCryptoUseCaseRequest {
 	userId: string;
 	symbol: string;
 	amount: Decimal;
 }
 
-interface BuyCryptoUseCaseResponse {
+interface SellCryptoUseCaseResponse {
 	amount: string;
 	symbol: string;
 	price: string;
 }
 
-export class BuyCryptoUseCase {
+export class SellCryptoUseCase {
 	constructor(
 		private cryptoRepository: CryptoRepository,
 		private walletRepository: WalletRepository,
@@ -29,7 +29,7 @@ export class BuyCryptoUseCase {
 		amount,
 		symbol,
 		userId,
-	}: BuyCryptoUseCaseRequest): Promise<BuyCryptoUseCaseResponse> {
+	}: SellCryptoUseCaseRequest): Promise<SellCryptoUseCaseResponse> {
 		const userWallet = await this.walletRepository.findByUserId(userId);
 		const crypto = await this.cryptoRepository.findBySymbol(symbol);
 
@@ -39,11 +39,12 @@ export class BuyCryptoUseCase {
 
 		// Check Wallet is created
 		if (!userWallet) throw new ResourceNotFoundError("userWallet");
-
+		
 		const cryptoInWallet = await this.walletRepository.findCryptoBySymbol(
 			symbol,
 			userWallet.id
 		);
+		if (!cryptoInWallet) throw new ResourceNotFoundError("cryptoInWallet");
 
 		const transactionPrice = new Decimal(cryptoQuote || 0)
 			.mul(amount)
@@ -51,33 +52,26 @@ export class BuyCryptoUseCase {
 		const userBalance = new Decimal(userWallet?.balance || 0);
 
 		// Check Balance
-		const haveSufficientBalance = userBalance.gte(transactionPrice);
+		const haveSufficientBalance = cryptoInWallet?.amount.gte(amount);
 		if (!haveSufficientBalance) throw new InsufficientBalanceError();
 
-		// Update Balance
-		const newBalance = userBalance.minus(transactionPrice).toDecimalPlaces(2);
-		await this.walletRepository.updateBalance(userId, newBalance);
-
 		// Update or Create Portfolio
-		if (!!cryptoInWallet?.id) {
-			await this.walletRepository.updateCryptoAmount(userWallet.id, {
-				amount: new Decimal(cryptoInWallet?.amount)
-					.plus(amount)
-					.toDecimalPlaces(8),
-				symbol,
-			});
-		} else {
-			await this.walletRepository.addCrypto(userWallet.id, {
-				amount: new Decimal(amount.toFixed(8)),
-				symbol,
-			});
-		}
+		await this.walletRepository.updateCryptoAmount(userWallet.id, {
+			amount: new Decimal(cryptoInWallet?.amount)
+				.minus(amount)
+				.toDecimalPlaces(8),
+			symbol,
+		});
+
+				// Update Balance
+				const newBalance = userBalance.plus(transactionPrice).toDecimalPlaces(2);
+				await this.walletRepository.updateBalance(userId, newBalance);
 
 		await this.transactionRepository.create(userId, {
 			userId,
 			amount: new Decimal(amount.toFixed(8)),
 			symbol,
-			side:'BUY',
+			side:'SELL',
 			price: transactionPrice.toFixed(2),
 		})
 		return {

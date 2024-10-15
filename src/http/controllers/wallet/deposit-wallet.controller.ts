@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from "fastify";
 import { z } from "zod";
-import { PrismaWalletRepository } from "../../../repositories/prisma/wallet-user-repository";
+import { PrismaWalletRepository } from "../../../repositories/prisma/prisma-wallet-user-repository";
 import { DepositWalletUseCase } from "../../../use-cases/wallet/deposit-wallet";
 import { Decimal } from "@prisma/client/runtime/library";
 import { ResourceNotFoundError } from "../../../use-cases/errors/resource-not-found-error";

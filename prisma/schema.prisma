@@ -59,8 +59,9 @@ model Crypto {
 
 model Transactions {
   id     String          @unique @default(uuid())
-  crypto Crypto          @relation(fields: [id], references: [symbol])
-  userId String          @unique
+  symbol String
+  crypto Crypto          @relation(fields: [symbol], references: [symbol])
+  userId String
   amount Decimal
   side   TransactionSide
   price  Decimal

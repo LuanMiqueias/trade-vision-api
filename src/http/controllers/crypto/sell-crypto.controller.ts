@@ -6,13 +6,13 @@ import { CreateUserUseCase } from "../../../use-cases/user/register";
 import { PrismaWalletRepository } from "../../../repositories/prisma/prisma-wallet-user-repository";
 import { PrismaCryptoRepository } from "@/repositories/prisma/prisma-crypto-repository";
 import { CreateCryptoUseCase } from "@/use-cases/crypto/create-crypto";
-import { BuyCryptoUseCase } from "@/use-cases/crypto/buy-crypto";
 import Decimal from "decimal.js";
 import { ResourceNotFoundError } from "@/use-cases/errors/resource-not-found-error";
 import { InsufficientBalanceError } from "@/use-cases/errors/insufficient-balance-error";
 import { PrismaTransactionRepository } from "@/repositories/prisma/prisma-transaction-repository";
+import { SellCryptoUseCase } from "@/use-cases/crypto/sell-crypto";
 
-export const buyCrypto = async (req: FastifyRequest, res: FastifyReply) => {
+export const sellCrypto = async (req: FastifyRequest, res: FastifyReply) => {
 	const createUserBodySchema = z.object({
 		amount: z.number().transform((val) => new Decimal(val)),
 		symbol: z.string(),
@@ -21,7 +21,7 @@ export const buyCrypto = async (req: FastifyRequest, res: FastifyReply) => {
 	const walletRepository = new PrismaWalletRepository();
 	const repositoryCrypto = new PrismaCryptoRepository();
 	const repositoryTransaction = new PrismaTransactionRepository();
-	const useCase = new BuyCryptoUseCase(repositoryCrypto, walletRepository, repositoryTransaction);
+	const useCase = new SellCryptoUseCase(repositoryCrypto, walletRepository, repositoryTransaction);
 
 	const { amount, symbol } = createUserBodySchema.parse(req.body);
 
