@@ -1,39 +1,39 @@
 ![image](https://github.com/user-attachments/assets/9d313c96-0314-4131-a36c-ac8bcb9e30f4)
 
-# TradeVision
-**TradeVision** é um aplicativo de simulação de investimentos e análise de mercado focado em fornecer aos usuários uma plataforma para praticar a compra e venda de ações e visualizar cotações em tempo real. O sistema é projetado para oferecer uma experiência prática e educacional sobre investimentos na bolsa de valores, sem realizar transações reais.
+# TradeVision  
+TradeVision is an investment simulation and market analysis application focused on providing users with a platform to practice buying and selling stocks and viewing real-time quotes. The system is designed to offer a hands-on and educational experience about investing in the stock market, without executing real transactions.
 
-## Objetivo
-Permitir que usuários simulem a compra e venda de ações, visualizem cotações de mercado e analisem o desempenho de seus portfólios simulados. O objetivo é fornecer uma ferramenta educacional e prática para investidores iniciantes e experientes.
+## Objective  
+To allow users to simulate buying and selling stocks, view market quotes, and analyze the performance of their simulated portfolios. The goal is to provide an educational and practical tool for both beginner and experienced investors.
 
-## Funcionalidades Principais
-- **Simulação de Transações**: Os usuários podem praticar a compra e venda de ações com dinheiro fictício.
-- **Visualização de Cotações**: Oferece cotações em tempo real e gráficos históricos de preços de ações.
-- **Gestão de Portfólio**: Permite adicionar, remover e atualizar ações em um portfólio simulado, além de visualizar o desempenho geral.
-- **Alertas e Notificações**: Configuração de alertas para mudanças de preços e notificações sobre variações significativas.
-- **Análise e Relatórios**: Geração de relatórios sobre o desempenho do portfólio e fornecimento de indicadores financeiros baseados em dados simulados.
+## Main Features  
+- Transaction Simulation: Users can practice buying and selling stocks with fake money.  
+- Quote Visualization: Offers real-time quotes and historical price charts of stocks.  
+- Portfolio Management: Allows users to add, remove, and update stocks in a simulated portfolio, as well as view overall performance.  
+- Alerts and Notifications: Set up alerts for price changes and notifications about significant fluctuations.  
+- Analysis and Reports: Generates reports on portfolio performance and provides financial indicators based on simulated data.  
 
-## Requisitos Funcionais
-- Cadastro e autenticação de usuários.
-- Simulação de compras e vendas de ações.
-- Visualização e gestão de portfólio simulado.
-- Cotações em tempo real e gráficos históricos.
-- Alertas de preço e notificações.
-- Relatórios de desempenho e indicadores financeiros.
+## Functional Requirements  
+- User registration and authentication.  
+- Simulation of stock purchases and sales.  
+- Visualization and management of simulated portfolios.  
+- Real-time quotes and historical charts.  
+- Price alerts and notifications.  
+- Performance reports and financial indicators.  
 
-## Requisitos Não Funcionais
-- **Desempenho**: Respostas rápidas e escalabilidade para suportar muitos usuários.
-- **Segurança**: Proteção de dados e autenticação segura.
-- **Confiabilidade**: Alta disponibilidade e backup de dados.
-- **Manutenibilidade**: Código limpo, documentado e testado.
-- **Usabilidade**: Interface intuitiva e acessível.
-- **Compatibilidade**: Suporte para diferentes navegadores e dispositivos.
-- **Legalidade**: Conformidade com regulamentações pertinentes.
-- **Internacionalização**: Suporte a múltiplos idiomas, se aplicável.
+## Non-Functional Requirements  
+- Performance: Fast response times and scalability to support many users.  
+- Security: Data protection and secure authentication.  
+- Reliability: High availability and data backup.  
+- Maintainability: Clean, documented, and tested code.  
+- Usability: Intuitive and accessible interface.  
+- Compatibility: Support for different browsers and devices.  
+- Legality: Compliance with relevant regulations.  
+- Internationalization: Support for multiple languages, if applicable.  
 
-## Funcionalidades Adicionais
-- **Modo de Simulação Avançada**: Ferramentas para análise técnica e estratégias de investimento.
-- **Educação e Tutoriais**: Guias e materiais educativos sobre investimentos.
-- **Integração com Dados Financeiros**: Dados históricos e previsões simuladas para análise.
+## Additional Features  
+- Advanced Simulation Mode: Tools for technical analysis and investment strategies.  
+- Education and Tutorials: Guides and educational materials about investing.  
+- Integration with Financial Data: Historical data and simulated forecasts for analysis.  
 
-**TradeVision** é uma ferramenta poderosa para quem deseja entender melhor o mercado financeiro, praticar estratégias de investimento e avaliar o impacto de suas decisões sem risco financeiro real.
+TradeVision is a powerful tool for anyone looking to better understand the financial market, practice investment strategies, and evaluate the impact of their decisions without real financial risk.
