@@ -1,5 +1,5 @@
 ![image](https://github.com/user-attachments/assets/9d313c96-0314-4131-a36c-ac8bcb9e30f4)
-
+.
 # TradeVision  
 TradeVision is an investment simulation and market analysis application focused on providing users with a platform to practice buying and selling stocks and viewing real-time quotes. The system is designed to offer a hands-on and educational experience about investing in the stock market, without executing real transactions.
 
